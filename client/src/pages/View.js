@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 import React, {useState, useEffect} from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
@@ -8,7 +9,7 @@ const View = () => {
     const {id} = useParams();
     useEffect(() =>{
         axios
-        .get(`http://localhost:8080/api/get/${id}`)
+        .get(`${API_URL}/api/get/${id}`)
         .then((resp) => setUser({...resp.data[0]}));
     }, [id]);
     return(

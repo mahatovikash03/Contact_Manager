@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import "./AddEdit.css";
@@ -20,7 +21,7 @@ const AddEdit = () => {
 
   useEffect(() =>{
     axios
-    .get(`http://localhost:8080/api/get/${id}`)
+    .get(`${API_URL}/api/get/${id}`)
     .then((resp) => setState({...resp.data[0]}));
   }, [id]);
 
@@ -31,7 +32,7 @@ const AddEdit = () => {
     } else {
       if(!id) {
         axios
-        .post("http://localhost:8080/api/post", {
+        .post(`${API_URL}/api/post`, {
           name,
           email,
           contact,
@@ -42,7 +43,7 @@ const AddEdit = () => {
         toast.success("Contact Added successfully!");
       } else {
         axios
-        .put(`http://localhost:8080/api/update/${id}`, {
+        .put(`${API_URL}/api/update/${id}`, {
           name,
           email,
           contact,
